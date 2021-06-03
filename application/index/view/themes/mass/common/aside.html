@@ -1,0 +1,130 @@
+
+
+<!-- 侧边栏 -->
+<div class="aside">
+    <!-- 博主信息 -->
+    <div class="aside_item author">
+        <div class="author_info">
+            <img class="author_info_bg" src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/template/mass/images/aside_author_image.jpg" alt="">
+            <img class="author_info_tx" src="http://q1.qlogo.cn/g?b=qq&nk={$email}&s=640" alt="">
+        </div>
+        <div class="aside_name">{$name}</div>
+        <div class="Introduction">{$TemplateConfig.Introduction.val}
+        </div>
+        <div class="total_number">
+            <div class="article_total">
+                <p class="total">{$article_total}</p>
+                <p class="number">文章数</p>
+            </div>
+            <div class="comment_total">
+                <p class="total">{$public_comments_total}</p>
+                <p class="number">评论数</p>
+            </div>
+        </div>
+        <ul class="recommend">
+            {foreach $randomArticle as $key=>$item}
+            <li class="recommend_item">
+                <a href="/article/{$item.aid}" class="recommend_item_href recommend_href">{$item.title}</a>
+                <span class="iconfont icon-lianjie"></span>
+            </li>
+            {/foreach}
+        </ul>
+    </div>
+    <!-- 热门文章 -->
+    <div class="aside_item hot" style="display:{$hot ? 'block' : 'none'}">
+        <div class="aside_item_title">
+            <div class="aside_item_title_left">
+                <span class="iconfont icon-remen"></span>
+                <span class="aside_item_title_left_title">热门文章</span>
+            </div>
+            <div class="aside_item_title_right">
+                <ol class="window">
+                    <li class="window_item window_item_red"></li>
+                    <li class="window_item window_item_yellow"></li>
+                    <li class="window_item window_item_green"></li>
+                </ol>
+            </div>
+        </div>
+        <div class="hot_article_wrap">
+            {foreach $hot as $key=>$item}
+            <div class="hot_article_item ">
+                <a href="/article/{$item.aid}">
+                    <div class="hot_article_item_bg">
+                        {empty name='item.cover'}
+                        <img src="https://cdn.jsdelivr.net/gh/2998524835/xkblog-Static/assets/thumb/{:mt_rand(1,40)}.jpg" alt="">
+                        {else/}
+                        <img src="{$item.cover}" alt="">
+                        {/empty}
+                    </div>
+
+                    <div class="hot_article_item_content">
+                        <div class="hot_article_item_content_title">{$item.title}</div>
+                        <div class="hot_article_item_info">{$item.browse} 阅读 - {$item.release_date | date ='m-d'}</div>
+                    </div>
+                    <div class="hot_article_item_band hot_article_item_{$key + 1}"><span>{$key + 1}</span></div>
+                </a>
+            </div>
+            {/foreach}
+        </div>
+
+    </div>
+    <!-- 最新回复 -->
+    <div class="aside_item reply" style="display:{$NewComments ? 'block' : 'none'}">
+        <div class="aside_item_title">
+            <div class="aside_item_title_left">
+                <span class="iconfont icon-liuyan"></span>
+                <span class="aside_item_title_left_title">最新回复</span>
+            </div>
+            <div class="aside_item_title_right">
+                <ol class="window">
+                    <li class="window_item window_item_red"></li>
+                    <li class="window_item window_item_yellow"></li>
+                    <li class="window_item window_item_green"></li>
+                </ol>
+            </div>
+        </div>
+        {foreach $NewComments as $key=>$item}
+        <div class="reply_item" >
+            <div class="reply_info">
+                <div class="reply_info_tx">
+                    <img src="http://q1.qlogo.cn/g?b=qq&nk={$item.email}&s=640" alt="">
+                </div>
+                <div class="reply_info_content">
+                    <div class="reply_info_name">{$item.author}</div>
+                    <div class="reply_info_date">{$item.date | date = 'Y-m-d'}</div>
+                </div>
+            </div>
+            <div class="reply_content_wrap">
+                <div class="reply_content_icon"></div>
+                <div class="reply_content">
+                    <a href="/article/{$item.aid}">{$item.content}</a>
+                </div>
+            </div>
+        </div>
+        {/foreach}
+    </div>
+
+    <!-- 标签云 -->
+    <div class="aside_item label" style="display:{$labelDate ? 'block' : 'none'}">
+        <div class="aside_item_title">
+            <div class="aside_item_title_left">
+                <span class="iconfont icon-biaoqian"></span>
+                <span class="aside_item_title_left_title">标签云</span>
+            </div>
+            <div class="aside_item_title_right">
+                <ol class="window">
+                    <li class="window_item window_item_red"></li>
+                    <li class="window_item window_item_yellow"></li>
+                    <li class="window_item window_item_green"></li>
+                </ol>
+            </div>
+        </div>
+        <div class="label_list">
+            {foreach $labelDate as $key=>$item}
+            <a href="/tag/{$item.name}" class="label_item">{$item['name']}</a>
+            {/foreach}
+        </div>
+    </div>
+
+
+</div>

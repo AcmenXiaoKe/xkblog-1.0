@@ -1,0 +1,247 @@
+{extend name='common'}
+    {block name="link"}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/css/index.css">
+    {/block}
+{block name="header"}
+{include file='common/header'}
+{/block}
+
+
+
+{block name="main"}
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div class="quick">
+            <div class="layui-row layui-col-space10">
+                <div class="quick_item  layui-col-sm12 layui-col-md4 ">
+                    <div class="quick_item_wrap ">
+                        <div class="quick_item_wrap_title">快捷方式</div>
+                        <div class="quick_item_list">
+                            <a href="/admin/write_post" class="quick_item_list_item">
+                                <div class="quick_item_list_item_icon_wrap">
+                                    <span class="quick_item_list_item_icon layui-icon layui-icon-list"></span>
+                                </div>
+                                <span class="quick_item_list_item_font">撰写文章</span>
+                            </a>
+                            <a href="/admin/template_config" class="quick_item_list_item">
+                                <div class="quick_item_list_item_icon_wrap">
+                                    <span class="quick_item_list_item_icon layui-icon layui-icon-file"></span>
+                                </div>
+                                <span class="quick_item_list_item_font">模板设置</span>
+                            </a>
+                            <a href="/admin/personal_settings" class="quick_item_list_item">
+                                <div class="quick_item_list_item_icon_wrap">
+                                    <span class="quick_item_list_item_icon layui-icon layui-icon-friends"></span>
+                                </div>
+                                <span class="quick_item_list_item_font">个人设置</span>
+                            </a>
+                            <a href="/admin/manage_posts" class="quick_item_list_item">
+                                <div class="quick_item_list_item_icon_wrap">
+                                    <span class="quick_item_list_item_icon layui-icon layui-icon-form"></span>
+                                </div>
+                                <span class="quick_item_list_item_font">文章管理</span>
+                            </a>
+                            <a href="/admin/manage_page" class="quick_item_list_item">
+                                <div class="quick_item_list_item_icon_wrap">
+                                    <span class="quick_item_list_item_icon layui-icon layui-icon-file-b"></span>
+                                </div>
+                                <span class="quick_item_list_item_font">页面管理</span>
+                            </a>
+                            <a href="/admin/Comments" class="quick_item_list_item">
+                                <div class="quick_item_list_item_icon_wrap">
+                                    <span class="quick_item_list_item_icon layui-icon layui-icon-reply-fill"></span>
+                                </div>
+                                <span class="quick_item_list_item_font">评论管理</span>
+                            </a>
+                            <a href="/admin/manage_categories" class="quick_item_list_item">
+                                <div class="quick_item_list_item_icon_wrap">
+                                    <span class="quick_item_list_item_icon layui-icon layui-icon-app"></span>
+                                </div>
+                                <span class="quick_item_list_item_font">分类管理</span>
+                            </a>
+                            <a href="/admin/options_general" class="quick_item_list_item">
+                                <div class="quick_item_list_item_icon_wrap">
+                                    <span class="quick_item_list_item_icon layui-icon layui-icon-set"></span>
+                                </div>
+                                <span class="quick_item_list_item_font">网站设置</span>
+                            </a>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="quick_item  layui-col-sm12 layui-col-md4 ">
+                    <div class="quick_item_wrap">
+                        <div class="quick_item_wrap_title">待办事项</div>
+                        <div class="quick_item_list backlog">
+                            <a href="#" class="backlog_item_list_item">
+                                <div class="backlog_item_list_item_title">待审评论</div>
+                                <div class="backlog_item_list_item_num">{$pdg_comments_total}</div>
+                            </a>
+                            <a href="#" class="backlog_item_list_item">
+                                <div class="backlog_item_list_item_title">草稿箱</div>
+                                <div class="backlog_item_list_item_num">{$pfg_article}</div>
+                            </a>
+                            <a href="#" class="backlog_item_list_item">
+                                <div class="backlog_item_list_item_title">待审用户</div>
+                                <div class="backlog_item_list_item_num">0</div>
+                            </a>
+<!--                            <a href="#" class="backlog_item_list_item">-->
+<!--                                <div class="backlog_item_list_item_title">待审友联</div>-->
+<!--                                <div class="backlog_item_list_item_num"></div>-->
+<!--                            </a>-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="quick_item  layui-col-sm12 layui-col-md4 ">
+                    <div class="quick_item_wrap Version_information">
+                        <div class="quick_item_wrap_title">版本信息</div>
+                        <table class="layui-table">
+                            <colgroup>
+                                <col width="150">
+                                <col width="200">
+                                <col>
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>编号</th>
+                                <th>xkblog</th>
+
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>版本</td>
+                                <td>v0.0.0.1</td>
+                            </tr>
+                            <tr>
+                                <td>系统</td>
+                                <td>{$Think.PHP_OS }</td>
+                            </tr>
+                            <tr>
+                                <td>PHP版本</td>
+                                <td>{$Think.PHP_VERSION}</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="System_information">
+            <div class="layui-row layui-col-space10">
+                <div class="System_information_item  layui-col-sm6 layui-col-md3">
+                    <div class="System_information_item_wrap System_information_article">
+                        <span class="layui-icon System_information_item_wrap_icon layui-icon-list"></span>
+                        <div class="System_information_item_info">
+                            <div class="System_information_item_info_num">{$article_total}</div>
+                            <div class="System_information_item_info_total">文章总数</div>
+                        </div>
+                        <a href="/admin/manage_posts" class="System_information_item_footer">
+                            <div class="System_information_item_footer_left">查询更多</div>
+                            <div class="System_information_item_footer_right">
+                                <span class="layui-icon layui-icon-link"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="System_information_item layui-col-sm6 layui-col-md3 ">
+                    <div class="System_information_item_wrap System_information_class">
+                        <span class="layui-icon System_information_item_wrap_icon layui-icon-app"></span>
+                        <div class="System_information_item_info">
+                            <div class="System_information_item_info_num">{$categories_total}</div>
+                            <div class="System_information_item_info_total">分类总数</div>
+                        </div>
+                        <a href="/admin/manage_categories" class="System_information_item_footer">
+                            <div class="System_information_item_footer_left">查询更多</div>
+                            <div class="System_information_item_footer_right">
+                                <span class="layui-icon layui-icon-link"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="System_information_item layui-col-sm6 layui-col-md3">
+
+                    <div class="System_information_item_wrap System_information_comments">
+                        <span class="layui-icon System_information_item_wrap_icon layui-icon-reply-fill"></span>
+                        <div class="System_information_item_info">
+                            <div class="System_information_item_info_num">{$comments_total}</div>
+                            <div class="System_information_item_info_total">评论总数</div>
+                        </div>
+                        <a href="/admin/Comments" class="System_information_item_footer">
+                            <div class="System_information_item_footer_left">查询更多</div>
+                            <div class="System_information_item_footer_right">
+                                <span class="layui-icon layui-icon-link"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="System_information_item layui-col-sm6 layui-col-md3">
+                    <div class="System_information_item_wrap System_information_browse">
+                        <span class="layui-icon System_information_item_wrap_icon layui-icon-website"></span>
+                        <div class="System_information_item_info">
+                            <div class="System_information_item_info_num">{$browse_total}</div>
+                            <div class="System_information_item_info_total">浏览总数</div>
+                        </div>
+                        <a href="#" class="System_information_item_footer">
+                            <div class="System_information_item_footer_left">查询更多</div>
+                            <div class="System_information_item_footer_right">
+                                <span class="layui-icon layui-icon-link"></span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="latest_information">
+            <div class="layui-row layui-col-space10">
+                <div class="latest_information_item layui-col-xs12  layui-col-md4">
+                    <div class="latest_information_wrap">
+                        <div class="latest_information_wrap_title">最近发布的文章</div>
+                        <ul class="latest_information_item_list">
+                            {foreach $article as $key=>$item}
+                            <li class="latest_information_item_list_item">
+                                <a href="/article/{$item.aid}"><span class="segmentation">{$item.release_date | date =' m-d '} </span> {$item.title}</a>
+                            </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                </div>
+                <div class="latest_information_item layui-col-xs12  layui-col-md4">
+                    <div class="latest_information_wrap">
+                        <div class="latest_information_wrap_title">最近得到的回复</div>
+                        <ul class="latest_information_item_list">
+                            {foreach $comments as $key=>$item}
+                            <li class="latest_information_item_list_item">
+                                <a href="/article/{$item.aid}"><span class="segmentation">{$item.date | date =' m-d '}</span><span
+                                        class="comments_name">{$item.author}  </span>  {$item.content}</a>
+                            </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                </div>
+                <div class=" latest_information_item layui-col-xs12 layui-col-md4">
+                    <div class="latest_information_wrap">
+                        <div class="latest_information_wrap_title">官方最新日志</div>
+                        <ul class="latest_information_item_list">
+                            {foreach $notice as $key=>$item}
+                            <li class="latest_information_item_list_item">
+                                <a href="{$item.url}" target="_blank"><span class="segmentation">{$item.data}</span>{$item.title}</a>
+                            </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/block}
+
+{block name="aside"}
+{include file='common/aside'}
+{/block}
+
+
+{block name="footer_script"}
+
+{/block}

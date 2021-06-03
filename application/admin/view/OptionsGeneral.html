@@ -1,0 +1,53 @@
+{extend name='common'}
+{block name="link"}
+{/block}
+
+{block name="header"}
+{include file='common/header'}
+{/block}
+
+{block name="main"}
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div class="layui-body_box">
+                <div class="layui-body_wrap">
+                    <div class="layui-body_wrap_title">基本设置</div>
+                    <div class="layui-row">
+                        <div class="layui-col-xs12  layui-col-md8 layui-col-md-offset2">
+                            <form action="/admin/options_general/edit" method="post" class="site_set_From">
+                                <div class="Form_item">
+                                    <div class="From_item_title">站点名称</div>
+                                    <input type="text"  required class="From_item_input From_item_input_name" name="name" value="{$options['name']}">
+                                    <div class="From_item_prompt">站点的名称将显示在网页的标题处</div>
+                                </div>
+                                <div class="Form_item">
+                                    <div class="From_item_title">站点地址</div>
+                                    <input type="text" required class="From_item_input From_item_input_url" name="url" value="{$options['url']}">
+                                    <div class="From_item_prompt">站点地址主要用于生成内容的永久链接</div>
+                                </div>
+                                <div class="Form_item">
+                                    <div class="From_item_title">站点描述</div>
+                                    <input type="text" class="From_item_input From_item_input_description" name="description" value="{$options['description']}">
+                                    <div class="From_item_prompt">站点描述将显示在网页代码的头部</div>
+                                </div>
+                                <div class="Form_item">
+                                    <div class="From_item_title">关键词</div>
+                                    <input type="text" class="From_item_input From_item_input_keywords" name="keywords" value="{$options['keywords']}">
+                                    <div class="From_item_prompt">请以半角逗号 "," 分割多个关键字</div>
+                                </div>
+                                <input type="submit" class="From_submit" value="保存设置">
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+{/block}
+{block name="aside"}
+{include file='common/aside'}
+{/block}
+
+
+{block name="footer_script"}
+{/block}

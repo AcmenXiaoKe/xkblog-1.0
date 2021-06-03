@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$web_options['name']}</title>
+    <meta name="description" content="{$web_options['description']}" />
+    <meta name="keywords" content="{$web_options['keywords']}" />
+        <link rel="stylesheet" href="https://www.layuicdn.com/layui-v2.6.7/css/layui.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/template/mass/css/font-icon.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/template/mass/css/common.css">
+    {block name="header_link"}
+    {/block}
+
+</head>
+<body>
+{block name="Loading"}
+{/block}
+<!-- 公共头部 -->
+{block name="header"}
+{/block}
+<!-- 主体-->
+{block name="main"}
+
+{/block}
+<!-- 底部 -->
+{block name="footer"}
+
+{/block}
+<!-- 公共侧边按钮 -->
+{block name="action"}
+
+{/block}
+<canvas id="live2d" width="280" height="250px"></canvas>
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/template/mass/lib/live2d/live2d.js"></script>
+<script>
+    loadlive2d('live2d','{$TemplateConfig.live2dModel.val ? $TemplateConfig.live2dModel.val : '' }')
+</script>
+<script src="https://www.layuicdn.com/layui/layui.js"></script>
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/template/mass/js/common.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/template/mass/js/Circle.js"></script>
+{block name="footer_script"}
+{/block}
+</body>
+</html>

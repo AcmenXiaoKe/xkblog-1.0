@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{$web_options['name']}-后台登陆</title>
+    <link rel="stylesheet" href="/static/admin/css/login.css">
+    <link rel="stylesheet" href="/static/admin/lib/layui-v2.6.5/css/layui.css">
+</head>
+
+<body>
+    <div class="login_wrap">
+        <div class="login_title">
+            <a href="#">XKBLOG</a>
+        </div>
+        <form class="login_form">
+            <input type="text" required placeholder="用户名" class="login_form_item" id="username" name="username">
+            <input type="password" required placeholder="密码" class="login_form_item" id="password" name="password">
+            <input type="submit" value="登陆" class="login_form_submit login_form_item">
+            <div class="login_form_footer">
+                <a href="#" class="return">返回首页</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="/static/admin/lib/layui-v2.6.5/layui.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        var login_form = document.querySelector('.login_form')
+        login_form.onsubmit = function () {
+            $.ajax({
+                type: "post",
+                url: "/admin/login/check",
+                data: {
+                    username: $('#username').val(),
+                    password: $('#password').val()
+                },
+                success: function (result) {
+                    if (result.meta.status !== 200) {
+                        layer.open({
+                            title: '提示信息',
+                            content: result.meta.msg,
+                        });
+                        return false
+                    }
+                    window.location.href = "/admin"
+                    return false
+                },
+                error: function (err) {
+                    console.log('错误！')
+                    return false
+                }
+            })
+            return false
+        }
+    </script>
+</body>
+
+</html>

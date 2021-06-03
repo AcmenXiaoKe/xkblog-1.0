@@ -1,0 +1,77 @@
+{extend name='common'}
+{block name="link"}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/css/template.css">
+<style>
+  .Form_item_radio {
+    margin: 0 5px;
+  }
+</style>
+{/block}
+
+{block name="header"}
+{include file='common/header'}
+{/block}
+
+{block name="main"}
+<div class="layui-body">
+  <!-- 内容主体区域 -->
+  <div class="layui-body_box">
+    <div class="layui-body_wrap">
+      <div class="layui-body_wrap_title">外观设置</div>
+      <div class="layui-row">
+        <div class="layui-col-xs12  layui-col-md8 layui-col-md-offset2">
+          <div class="layui-tab">
+            <ul class="layui-tab-title">
+              <li class="layui-this">可以使用的模板</li>
+              <li>设置模板</li>
+            </ul>
+            <div class="layui-tab-content">
+              <div class="layui-tab-item layui-show">
+                <div class="template_title">
+                  <div class="template_left">预览</div>
+                  <div class="template_right">详细</div>
+                </div>
+                {foreach $template as $key=>$item}
+                <div class="template_item" style="{$item.status  ?  'background: rgba(64,158,255,.1);
+              border: 0px;' : ''};">
+                  <div class="template_left template_item_left">
+                    <img src="{$item.preview}" alt="">
+                  </div>
+                  <div class="template_right template_item_right">
+                    <div class="template_item_title">{$item.name}</div>
+                    <div class="template_item_author">作者：{$item.author}</div>
+                    <div class="template_item_abstract">{$item.abstract}</div>
+                    <button class="template_item_btn" onclick="template_edit('{$item.name}')" style="display:{$item.status  ?  'none' : 'block'};">启用</button>
+                  </div>
+                </div>
+                {/foreach}
+
+              </div>
+              <div class="layui-tab-item">
+                <div class="template_config">
+                  {foreach $templateConfigData as $key=>$item}
+                  <div class="template_config_item">
+                    <div class="From_item_title">{$item.title}</div>
+                    <input type="{$item.type}"  data-type="{$item.type}" data-title="{$item.title}" data-prompt="{$item.prompt}" class="From_item_input" id="{$key}" value="{$item.val}" name="{$key}">
+                    <div class="From_item_prompt">{$item.prompt}</div>
+                  </div>
+                  {/foreach}
+                  <button class="From_submit">保存设置</button>
+                </div>
+              </div>
+            </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+{/block}
+{block name="aside"}
+{include file='common/aside'}
+{/block}
+
+
+{block name="footer_script"}
+  <script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/js/template-config.js"></script>
+{/block}

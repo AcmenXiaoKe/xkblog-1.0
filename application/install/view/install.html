@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Xkblog-安装</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #F5F5F5;
+        }
+
+        main {
+            display: block;
+            margin: 15px;
+            width: 100%;
+            max-width: 1120px;
+            min-height: 500px;
+            border: 1px solid rgba(0, 0, 0, .1);
+            background: #fff;
+        }
+
+        .title {
+            margin: 15px;
+            color: rgba(0, 0, 0, .85);
+        }
+
+        .info {
+
+            padding: 15px 0;
+        }
+
+        .info_item {
+            margin: 15px;
+            color: #000;
+        }
+
+        .info_item_input {
+            min-width: 200px;
+            height: 25px;
+            text-indent: 0.5em;
+            border: 0;
+            outline: none;
+            border: 1px solid #ccc;
+
+        }
+
+        .info_item_input:focus {
+            border: 1px solid #409EFF;
+        }
+
+        .info_item_title {
+            display: inline-block;
+            width: 190px;
+            font-weight: 555;
+            color: rgba(0, 0, 0, .85);
+            font-size: 15px;
+        }
+
+        .info_item_prompt {
+            margin-left: 15px;
+            font-size: 14px;
+            color: rgba(0, 0, 0, .85);
+        }
+
+        .info_title {
+            font-weight: 555;
+            color: #409EFF;
+            margin-left: 10px;
+        }
+
+        .btn_wrap {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .btn {
+            cursor: pointer;
+            margin: 15px;
+            width: 70px;
+            height: 30px;
+            background: #409EFF;
+            color: #fff;
+            border: 0;
+            border-radius: 3px;
+        }
+
+
+        .content {
+            display: none;
+            position: fixed;
+            background: #9C27B0;
+            animation: hue 10s linear infinite;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .loader {
+            position: absolute;
+            text-align: center;
+            width: 100%;
+            height: 2em;
+            top: 50%;
+            margin-top: -1em;
+        }
+
+        .loader_letter {
+            text-transform: uppercase;
+            color: #fff;
+            font-family: "Helvetica", sans-serif;
+            font-weight: bold;
+            padding: 0 .2em;
+            font-size: 2em;
+            line-height: 1;
+            position: relative;
+            display: inline-block;
+            animation: bounce 0.5s cubic-bezier(0.165, 0.84, 0.44, 1) infinite alternate;
+        }
+
+        .loader_letter:nth-child(1) {
+            animation-delay: 0s;
+        }
+
+        .loader_letter:nth-child(2) {
+            animation-delay: 0.05s;
+        }
+
+        .loader_letter:nth-child(3) {
+            animation-delay: 0.1s;
+        }
+
+        .loader_letter:nth-child(4) {
+            animation-delay: 0.15s;
+        }
+
+        .loader_letter:nth-child(5) {
+            animation-delay: 0.2s;
+        }
+
+        .loader_letter:nth-child(6) {
+            animation-delay: 0.25s;
+        }
+
+        .loader_letter:nth-child(7) {
+            animation-delay: 0.3s;
+        }
+
+        @keyframes bounce {
+            0% {
+                transform: translateY(0px);
+            }
+
+            100% {
+                transform: translateY(-1em);
+            }
+        }
+
+        @keyframes hue {
+            0% {
+                filter: hue-rotate(0deg);
+            }
+
+            100% {
+                filter: hue-rotate(360deg);
+            }
+        }
+
+        .success {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .success_title {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2em;
+        }
+
+        .success_title_icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 15px;
+        }
+
+        .success_btn {
+            display: inline-block;
+            text-decoration: none;
+            width: 100px;
+            height: 30px;
+            background: #409EFF;
+            border-radius: 3px;
+            margin: 15px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="content">
+        <div class="loader"><span class="loader_letter">正</span><span class="loader_letter">在</span><span
+                class="loader_letter">安</span><span class="loader_letter">装</span><span class="loader_letter">中</span>
+        </div>
+    </div>
+    <main>
+        <div class="config">
+            <div class="info">
+                <div class="title">请在下方填写配置信息.</div>
+                <div class="info_title">数据库配置</div>
+                <div class="info_item">
+                    <span class="info_item_title">数据库主机</span><input id="hostname" class="info_item_input" type="text"
+                        value="localhost">
+                    <span class="info_item_prompt">如果 localhost 不能用，你通常可以从提供商处获取到正确的信息.</span>
+                </div>
+                <div class="info_item">
+                    <span class="info_item_title">数据库名</span><input id="database" class="info_item_input" value=""
+                        type="text">
+                    <span class="info_item_prompt">希望将 Xkblog 安装到的数据库名称</span>
+                </div>
+
+                <div class="info_item">
+                    <span class="info_item_title">用户名</span><input id="username" class="info_item_input" value="root"
+                        type="text">
+                    <span class="info_item_prompt">你数据库的用户名</span>
+                </div>
+
+                <div class="info_item">
+                    <span class="info_item_title">密码</span><input id="password" class="info_item_input" type="text">
+                    <span class="info_item_prompt">你数据库的密码</span>
+                </div>
+
+                <div class="info_item">
+                    <span class="info_item_title">数据库端口号</span><input id="hostport" value="3306" class="info_item_input"
+                        type="text">
+                    <span class="info_item_prompt">你数据库的端口号，默认是 3306</span>
+                </div>
+                <div class="info_title">管理员配置</div>
+
+
+                <div class="info_item">
+                    <span class="info_item_title">用户名</span><input id="admin_username" class="info_item_input"
+                        type="text">
+                    <span class="info_item_prompt">你账号的用户名</span>
+                </div>
+                <div class="info_item">
+                    <span class="info_item_title">密码</span><input id="admin_password" class="info_item_input"
+                        type="text">
+                    <span class="info_item_prompt">你账号的密码</span>
+                </div>
+                <div class="info_item">
+                    <span class="info_item_title">昵称</span><input id="admin_name" class="info_item_input" type="text">
+                    <span class="info_item_prompt">你账号的昵称</span>
+                </div>
+                <div class="info_item">
+                    <span class="info_item_title">邮箱</span><input id="admin_email" class="info_item_input" type="email">
+                    <span class="info_item_prompt">你账号的邮箱</span>
+                </div>
+                <div class="btn_wrap">
+                    <button class="btn cofing_btn">安装</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <div class="success">
+        <div class="success_title"><svg t="1622719297415" class="success_title_icon" viewBox="0 0 1024 1024"
+                version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2686" width="200" height="200">
+                <path
+                    d="M512 1024a512 512 0 1 1 0-1024 512 512 0 0 1 0 1024z m-71.318588-361.411765a29.334588 29.334588 0 0 0 20.48-8.252235L774.625882 349.364706a27.708235 27.708235 0 0 0 0-39.936 29.575529 29.575529 0 0 0-41.08047 0l-292.74353 284.912941L290.454588 448.150588a29.575529 29.575529 0 0 0-41.08047 0 27.708235 27.708235 0 0 0 0 39.996236l170.706823 166.128941a29.274353 29.274353 0 0 0 20.540235 8.252235z"
+                    fill="#33A954" p-id="2687"></path>
+            </svg>恭喜您已经成功安装！</div>
+        <div>
+            <a href="/" class="success_btn">进入前台</a>
+            <a href="/admin" class="success_btn" style="background: #eb2f96;">进入后台</a>
+        </div>
+    </div>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+    <script>
+        $('.cofing_btn').on('click', function () {
+            let hostname = $('#hostname').val()
+            let database = $('#database').val()
+            let username = $('#username').val()
+            let password = $('#password').val()
+            let admin_username = $('#admin_username').val()
+            let admin_name = $('#admin_name').val()
+            let admin_email = $('#admin_email').val()
+            let admin_password = $('#admin_password').val()
+            let hostport = $('#hostport').val()
+            var config = document.querySelector('main')
+            var success = document.querySelector('.success')
+
+            if (hostname == '' || database == '' || username == '' || password == '' || admin_username == '' || admin_name == '' || admin_email == '' || admin_password == '' || hostport == '') {
+                alert('请完整的填写信息')
+                return
+            }
+            let reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            if (!admin_email.match(reg)) {
+                alert('邮箱格式不正确！')
+                return
+            }
+            let data = {
+                hostname,
+                database,
+                username,
+                password,
+                admin_username,
+                admin_name,
+                admin_email,
+                admin_password,
+                hostport
+            }
+            $('.content').show()
+            $.ajax({
+                type: "post",
+                url: '/install/Index/handle',
+                data: data,
+                success: function (result) {
+                    $('.content').hide();
+                    config.style.display = 'none'
+                    success.style.display = 'flex'
+                },
+                error: function () {
+                    alert('数据库连接失败！');
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,95 @@
+{extend name='common'}
+{block name="link"}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/css/manage-posts.css">
+<style>
+    .pagination {
+        margin-top: 25px;
+        display: flex;
+        justify-content: flex-end;
+    }
+    .pagination li  {
+        cursor: pointer;
+        padding: 5px 8px;
+        background: var(--Primary);
+        margin: 0 3px;
+        color: #909399;
+    }
+    .active , .disabled{
+        color: var(--color-white) !important;
+    }
+
+</style>
+{/block}
+
+{block name="header"}
+{include file='common/header'}
+{/block}
+
+{block name="main"}
+        <div class="layui-body">
+            <div class="layui-body_box">
+                <div class="layui-body_wrap">
+                    <div class="layui-body_wrap_title">页面管理</div>
+                    <div class="operation_wrap">
+                        <a href="/admin/write_page">
+                        <button class="newDate_btn">新增页面</button></a>
+                    </div>
+                    <table class="layui-table article_table">
+<!--                        <colgroup>-->
+<!--                            <col width="150">-->
+<!--                            <col width="200">-->
+<!--                            <col>-->
+<!--                        </colgroup>-->
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>标题</th>
+                                <th>作者</th>
+                                <th>日期</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {volist  name='data' id='item'}
+                            <tr>
+                                <td>{$item.aid}</td>
+                                <td>{$item.title}</td>
+                                <td>{$item.author}</td>
+
+                                <td>{$item.release_date}</td>
+                                <td>
+                                    <input class="xk_checkbox" type="checkbox"  data-id="{$item.aid}" {$item.state == 0  ? '' : 'checked'} >
+                                </td>
+                                <td>
+                                    <div class="article_handle_wrap">
+                                        <a href="/admin/write_post?aid={$item.aid}"><button class="article_handle_item edit">
+                                            <span class="layui-icon layui-icon-edit article_handle_item_icon"></span>
+                                        </button></a>
+                                        <button class="article_handle_item delete" onclick="Datadel({$item.aid})">
+                                            <span class="layui-icon layui-icon-delete article_handle_item_icon" ></span>
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        {/volist}
+                        </tbody>
+                    </table>
+<!--                    <div class="paging">-->
+<!--                        <div class="previous_page paging_btn">上一页</div>-->
+<!--                        <div class="page_item paging_btn">1</div>-->
+<!--                        <div class="page_item paging_btn">2</div>-->
+<!--                        <div class="page_item paging_btn">3</div>-->
+<!--                        <div class="next_page paging_btn">下一页</div>-->
+<!--                    </div>-->
+                    {$data|raw}
+                </div>
+            </div>
+        </div>
+{/block}
+{block name="aside"}
+{include file='common/aside'}
+{/block}
+{block name="footer_script"}
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/js/manage-page.js"></script>
+{/block}

@@ -1,0 +1,83 @@
+{extend name='common'}
+{block name="link"}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/css/manage-posts.css">
+{/block}
+
+{block name="header"}
+{include file='common/header'}
+{/block}
+{block name="main"}
+<div class="layui-body">
+  <div class="layui-body_box">
+    <div class="layui-body_wrap_title">评论管理</div>
+
+    <div class="layui-body_wrap">
+
+<!--      <div class="operation_wrap">-->
+<!--        <a href="/admin/category">-->
+<!--          <button class="newDate_btn">新增分类</button></a>-->
+<!--        <div class="screening">-->
+<!--          <select name="class" class="screening_val">-->
+<!--            <option value="默认分类">默认分类</option>-->
+<!--            <option value="JavaScript">JavaScript</option>-->
+<!--          </select>-->
+<!--          <button class="screening_btn">筛选</button>-->
+<!--        </div>-->
+<!--      </div>-->
+      <table class="layui-table article_table">
+        <colgroup>
+          <col width="150">
+          <col width="200">
+          <col>
+        </colgroup>
+        <thead>
+        <tr>
+          <th>作者</th>
+          <th>邮箱</th>
+          <th>内容</th>
+          <th>日期</th>
+          <th>状态</th>
+          <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        {volist  name='data' id='item'}
+        <tr>
+          <td>{$item.author}</td>
+          <td>{$item.email}</td>
+          <td style="max-width: 200px">{$item.content}</td>
+          <td>{$item.date}</td>
+          <td>
+            <input class="xk_checkbox" type="checkbox"  data-id="{$item.cid}" {$item.state == 0  ? '' : 'checked'} >
+          </td>
+          <td>
+            <div class="article_handle_wrap">
+              <button class="article_handle_item delete" onclick="Datadel({$item.cid})">
+                <span class="layui-icon layui-icon-delete article_handle_item_icon" ></span>
+              </button>
+            </div>
+          </td>
+        </tr>
+        {/volist}
+        </tbody>
+
+      </table>
+      <!--                    <div class="paging">-->
+      <!--                        <div class="previous_page paging_btn">上一页</div>-->
+      <!--                        <div class="page_item paging_btn">1</div>-->
+      <!--                        <div class="page_item paging_btn">2</div>-->
+      <!--                        <div class="page_item paging_btn">3</div>-->
+      <!--                        <div class="next_page paging_btn">下一页</div>-->
+      <!--                    </div>-->
+    </div>
+  </div>
+</div>
+
+{/block}
+{block name="aside"}
+{include file='common/aside'}
+{/block}
+
+{block name="footer_script"}
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/js/comments.js"></script>
+{/block}

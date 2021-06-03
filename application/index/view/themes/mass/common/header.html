@@ -1,0 +1,116 @@
+
+<!-- 头部 -->
+<div class="header">
+    <div class="wrap header_wrap">
+        <div class="menu">
+            <span class="iconfont  icon-caidan"></span>
+        </div>
+        <div class="header_wrap_left">
+            <div class="logo">
+                <a href="/">
+                    <img src="{$TemplateConfig.logo.val}" alt="">
+                </a>
+            </div>
+            <div class="nav">
+                <div class="header_author">
+                    <div class="header_author_info">
+                        <div class="header_author_info_left">
+                            <div class="header_author_info_tx">
+                                <img src="http://q1.qlogo.cn/g?b=qq&nk={$email}&s=640" alt="">
+                            </div>
+                        </div>
+                        <div class="header_author_info_right">
+                            <div class="header_author_info_name">{$name}</div>
+                            <div class="header_author_info_introduce">
+                                {$TemplateConfig.Introduction.val}
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                {foreach $pages as $key=>$item}
+                <div href="/link" class="nav_item">
+                    <a href="/page/{$item.aid}" class="nav_item_href">{$item.title}</a>
+                    <div class="nav_item_hover">
+                        <div class="nav_item_hover_hr"></div>
+                    </div>
+                </div>
+                {/foreach}
+                {foreach $categories as $key=>$item}
+                <div href="#" class="nav_item">
+                    <div class="class_nav">
+                        <a href="/class/{$item.catid}" class="nav_item_href ">{$item.catname}</a>
+                        {if condition = "empty($item.child)"}
+                        {else/}
+                        <div class="nav_item_subtitle">
+                            <span class="icon-xiala iconfont nav_item_icon"></span>
+                            <span class="iconfont icon-xiala1"></span>
+                            <div class="nav_item_subtitle_item">
+                                <div class="nav_item_subtitle_item_title">
+                                </div>
+                                {foreach $item.child as $key=>$item2}
+                                <div href="#" class="nav_secondary_item">
+                                    <a href="/class/{$item2.catid}">{$item2.catname}</a>
+                                    {if condition = "empty($item2.child)"}
+                                    {else/}
+                                    <div class="rulelayer">
+                                        <div class="rulelayer_wrap">
+                                        {foreach $item2.child as $key=>$item3}
+                                        <div href="#" class="nav_secondary_item">
+                                            <a href="/class/{$item3.catid}">{$item3.catname}</a>
+                                            {if condition = "empty($item3.child)"}
+                                            {else/}
+                                            <div class="rulelayer">
+
+                                                <div class="rulelayer_wrap">
+                                                    {foreach $item3.child as $key=>$item4}
+                                                    <div href="#" class="nav_secondary_item">
+                                                        <a href="/class/{$item4.catid}">{$item4.catname}</a>
+                                                    </div>
+                                                    {/foreach}
+                                                </div>
+                                             </div>
+                                            {/if}
+                                        </div>
+                                        {/foreach}
+                                    </div>
+                                    </div>
+                                    {/if}
+                                </div>
+                                {/foreach}
+                            </div>
+                        </div>
+                        {/if}
+                    </div>
+                </div>
+                {/foreach}
+                <div class="mobile_model">
+                    {foreach $categoriesData as $key=>$item}
+                    <a href="/class/{$item.catid}" class="mobile_model_item">{$item.catname}</a>
+                    {/foreach}
+                    {foreach $pages as $key=>$item}
+                    <a href="/page/{$item.aid}" class="mobile_model_item">{$item.title}</a>
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+        <div class="header_wrap_right">
+            <div class="search">
+                <input type="search" class="search_val" placeholder="请输入搜索内容...">
+                <input type="submit" class="search_btn" value="SearCh">
+            </div>
+        </div>
+        <div class="search_icon">
+            <span class="iconfont icon-sousuo"></span>
+        </div>
+        <div class="search_mobile">
+            <div class="search">
+                <input type="search" class="search_val" placeholder="请输入搜索内容...">
+                <input type="submit" class="search_btn" value="SearCh">
+            </div>
+        </div>
+        <div class="search_mobile_mask"></div>
+        <div class="mask"></div>
+
+    </div>
+</div>

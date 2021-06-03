@@ -1,0 +1,89 @@
+{extend name='common'}
+{block name="link"}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/css/Personal_Settings.css">
+{/block}
+
+
+{block name="header"}
+{include file='common/header'}
+{/block}
+
+
+
+{block name="main"}
+<div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div class="layui-body_box">
+        <div class="layui-body_wrap_title">个人设置</div>
+        <div class="layui-body_wrap">
+
+            <div class="layui-row">
+                <div class="layui-col-xs12  layui-col-md4">
+                    <div class="Personal_info">
+                        <div class="Personal_info_tx">
+                            <img src="http://q1.qlogo.cn/g?b=qq&nk={$data['email']}&s=640" alt="">
+                        </div>
+                        <div class=" Personal_info_info_item">{$data['username']}</div>
+                        <div class=" Personal_info_info_item">
+                            目前有<a href="#" class="Personal_info_info_item_num">1</a>篇日志, 并有<a href="#"
+                                                                                              class="Personal_info_info_item_num">1</a>条关于你的评论在<a href="#"
+                                                                                                                                                  class="Personal_info_info_item_num">1</a>个分类中.
+                        </div>
+                        <div class="Personal_info_info_item">最后登录: {$data['logged']}</div>
+                    </div>
+                </div>
+                <div class="layui-col-xs12  layui-col-md-offset1 layui-col-md5 ">
+                    <div class="Personal_data">
+                        <div class="Form_title">个人资料</div>
+                        <form action="/admin/personal_settings/user" class="Personal_data_form Personal_data_form_user_data" method="post">
+                            <div class="Form_item">
+                                <div class="From_item_title">昵称</div>
+                                <input class="From_item_input" name="name" value="{$data['name']}" type="text" />
+                                <div class="From_item_prompt">
+                                    用户昵称可以与用户名不同, 用于前台显示<br>
+                                    如果你将此项留空, 将默认使用用户名</div>
+                            </div>
+                            <div class="Form_item">
+                                <div class="From_item_title">电子邮箱地址 *</div>
+                                <input class="From_item_input" name="email" value="{$data['email']}" type="text" />
+                                <div class="From_item_prompt">
+                                    电子邮箱地址将作为此用户的主要联系方式<br>
+                                    请不要与系统中现有的电子邮箱地址重复</div>
+                            </div>
+                            <input type="submit" class="From_submit" value="更新我的档案">
+                        </form>
+
+                        <div class="Form_title">密码修改</div>
+                        <form action="/admin/personal_settings/EditPassword" method="post" class="Personal_data_form Personal_data_form_user_password">
+                            <div class="Form_item">
+                                <div class="From_item_title">用户密码</div>
+                                <input class="From_item_input From_item_input_password" value="" name="password" type="password" />
+                                <div class="From_item_prompt">
+                                    为此用户分配一个密码<br>
+                                    建议使用特殊字符与字母、数字的混编样式,以增加系统安全性 </div>
+                            </div>
+                            <div class="Form_item">
+                                <div class="From_item_title">用户密码确认</div>
+                                <input class="From_item_input From_item_input_ispassword" value=""  name="ispassword" type="password" />
+                                <div class="From_item_prompt">
+                                    请确认你的密码, 与上面输入的密码保持一致
+                                </div>
+                            </div>
+                            <input type="submit" class="From_submit" value="更新密码">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{/block}
+
+{block name="aside"}
+{include file='common/aside'}
+{/block}
+
+{block name="footer_script"}
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/js/PersonalSettings.js"></script>
+{/block}

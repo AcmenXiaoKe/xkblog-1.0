@@ -1,0 +1,48 @@
+{extend name='common'}
+{block name="link"}
+{/block}
+
+{block name="header"}
+{include file='common/header'}
+{/block}
+{block name="main"}
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div class="layui-body_box">
+                <div class="layui-body_wrap">
+                    <div class="layui-body_wrap_title">{$operation == 'insert' ? '新增分类' : '修改分类'}</div>
+                    <div class="layui-row">
+                        <div class="layui-col-xs12  layui-col-md8 layui-col-md-offset2">
+                            <form  class="site_set_From">
+                                <div class="Form_item">
+                                    <div class="From_item_title">分类名称 *</div>
+                                    <input type="text"  name="name" id="class_name" required class="From_item_input" value="{$data.catname ?: ''}">
+                                    <input type="hidden"  id="catid" value="{$data['catid'] ?: '' }">
+                                    <input type="hidden" id="operation" value="{$operation}">
+                                </div>
+                                <div class="Form_item">
+                                    <div class="From_item_title">父级分类</div>
+                                    <select name="pid"   id="parent">
+                                        <option value="0" >不选择</option>
+                                        {foreach $CategoriesData as $key=>$item}
+                                        <option value="{$item.catid}" {$data.pid == $item.catid ? 'selected' : '' } >{$item.catname}</option>
+                                        {/foreach}
+                                    </select>
+                                    <div class="From_item_prompt">此分类将归档在您选择的父级分类下.</div>
+                                </div>
+                                <input type="submit" class="From_submit" value="{$operation == 'insert' ? '新增分类' : '修改分类'}">
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+{/block}
+{block name="aside"}
+{include file='common/aside'}
+{/block}
+
+{block name="footer_script"}
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/js/category.js"></script>
+{/block}

@@ -1,0 +1,98 @@
+{extend name='common'}
+{block name="link"}
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/lib/editor.md-master/css/editormd.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/css/write-post.css">
+{/block}
+
+{block name="header"}
+{include file='common/header'}
+{/block}
+
+
+{block name="main"}
+   <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div class="layui-body_box">
+                <div class="layui-body_wrap">
+                      <div class="layui-body_wrap_title">{$operation == 'insert' ? '撰写新文章' : '编辑文章'}</div>
+                    <!-- <form action=""> -->
+                    <div class="layui-row">
+                        <div class="layui-col-xs12  layui-col-md9 write_post_main" date-operation="{$operation}">
+
+                            <div class="write_post_main_title">
+                                <input type="text" id="title" value="{$article_title ?:  ''}" placeholder="标题">
+                                <input type="hidden" value="{$name}" id="author">
+                                <input type="hidden" value="{$aid ?: ''}" id="aid">
+                            </div>
+                            <div id="write_post_main_content">
+                                <textarea style="display:none;">{$content ?:  ''}</textarea>
+                            </div>
+                            <div class="from_submit_wrap">
+                                <input type="submit" class="From_submit draft" value="保存草稿">
+                                <input type="submit" class="From_submit From_submit_write_post" value="发布文章">
+                            </div>
+                        </div>
+                        <div class="layui-col-xs12 layui-col-md3 write_post_attribute">
+                            <div class="layui-tab">
+                                <ul class="layui-tab-title">
+                                    <li class="layui-this">选项</li>
+<!--                                    <li>附件</li>-->
+                                </ul>
+                                <div class="layui-tab-content">
+                                    <div class="layui-tab-item layui-show">
+                                        <div class="write_post_attribute_title">发布日期</div>
+                                        <div class="layui-inline">
+                                            <!-- 注意：这一层元素并不是必须的 -->
+                                            <input type="text" value="{$release_date ?: ''}" class="layui-input" id="article_date">
+                                        </div>
+                                        <div class="write_post_attribute_title">分类</div>
+                                        <div class="write_post_attribute_class">
+
+                                            <div class="write_post_attribute_categories" style="display:flex;    flex-direction: column;
+    align-items: flex-start;">
+                                                {foreach $categories_list as $key => $item}
+                                                <div>
+                                                    <input id="write_post_class" type="checkbox"   {$item.flag ?: false  ?  'checked' : '' }      class="write_post_crid"    value="{$item.catid}" > {$item.catname}
+                                                </div>
+                                                {/foreach}
+                                            </div>
+
+                                        </div>
+                                        <div class="write_post_attribute_title">标签</div>
+                                        <div class="tag_wrap">
+                                            <div class="tag_list">
+                                                {present name='label'}
+                                                {foreach $label   as $key => $item}
+                                                <div class="tag_item">
+                                                    <span>{$item}</span>
+                                                    <a class="del">x</a>
+                                                </div>
+                                                {/foreach}
+                                                {/present}
+                                            </div>
+                                            <input type="text" class="tag_input">
+                                        </div>
+                                    </div>
+<!--                                    <div class="layui-tab-item">-->
+<!--                                        <button type="button" class="layui-btn" id="upload" style="margin: 15px;">-->
+<!--                                            <i class="layui-icon">&#xe67c;</i>上传图片-->
+<!--                                        </button>-->
+<!--                                    </div>-->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- </form> -->
+                    </div>
+                </div>
+
+            </div>
+        </div>
+{/block}
+{block name="aside"}
+{include file='common/aside'}
+{/block}
+{block name="footer_script"}
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/lib/editor.md-master/editormd.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/js/compiler.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/admin/js/write-page.js"></script>
+{/block}

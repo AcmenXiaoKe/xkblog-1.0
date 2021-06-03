@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{$web_options['name']}{$title ?: '' ? '-' : ''}{$title ?: ''}</title>
+  <meta name="description" content="{$web_options['description']}" />
+  <meta name="keywords" content="{$web_options['keywords']}" />
+  <link href='http://cdn.repository.webfont.com/webfonts/nomal/144871/19673/60ae51c0f629d8eb900db7cb.css' rel='stylesheet'
+        type='text/css' />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/template/simple/css/common.css">
+  {block name="header_link"}
+  {/block}
+</head>
+<body>
+<!-- 公共头部 -->
+{block name="header"}
+{/block}
+
+{block name="banner"}
+{/block}
+
+<!-- 主体-->
+{block name="main"}
+
+{/block}
+<!-- 底部 -->
+{block name="footer"}
+
+{/block}
+<!-- 公共侧边按钮 -->
+{block name="action"}
+
+{/block}
+
+<script src="https://cdn.jsdelivr.net/gh/AcmenXiaoKe/static@master/template/simple/js/common.js"></script>
+{block name="footer_script"}
+{/block}
+</body>
+</html>

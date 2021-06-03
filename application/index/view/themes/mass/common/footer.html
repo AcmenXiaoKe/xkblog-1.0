@@ -1,0 +1,22 @@
+<footer>
+    <div class="wrap footer">
+        <div class="footer_link">
+            <div>
+                {foreach $pages as $key=>$item}
+                <a href="/page/{$item.aid}">{$item.title}
+                    <div class="url_hr">
+                        <span></span>
+                    </div>
+                </a>
+                {/foreach}
+            </div>
+        </div>
+        <div class="Copyright">
+            <span>Copyright © xiaoke. all rights reserved</span><br>
+            <a href="#" target="_blank"> 桂ICP备2021000101号-1
+            </a>
+        </div>
+    </div>
+</footer>
+
+
