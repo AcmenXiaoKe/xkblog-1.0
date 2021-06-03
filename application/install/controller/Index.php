@@ -17,8 +17,8 @@ class Index extends  Controller
         if(file_exists('install.lock')) {
             return '你已经安装过了，如果需要重新安装，请将 public/install.lock 删除,并且把数据库清空';
         }
-        if(PHP_VERSION <= 7.1) {
-            return  '请使用 7.1 以上的PHP版本';
+        if( PHP_VERSION >= 7.4 || PHP_VERSION <= 7.1) {
+            return  '请使用 7.1 ~ 7.3 之间的PHP版本';
         }
         return $this->fetch('/install');
     }
