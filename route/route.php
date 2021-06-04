@@ -25,10 +25,6 @@ Route::get('/class/:id','Search/category');
 Route::get('/tag/:val','Search/tag');
 // 页面
 Route::get('/page/:aid','Page/index');
-//Route::miss('index/Error/index');
-// 后台
-//Route::get('/admin','/admin/');
-//Route::get('/login','/admin/login/');
 
 return [
 
