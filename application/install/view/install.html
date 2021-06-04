@@ -335,7 +335,8 @@
                     success.style.display = 'flex'
                 },
                 error: function () {
-                    alert('数据库连接失败！');
+                    $('.content').hide();
+                    alert('数据库连接失败，请检查一下你的数据库账号密码是否正确，如正确请重试！');
                 }
             })
         })
