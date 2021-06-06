@@ -8,8 +8,6 @@ use app\admin\model\Categories as CategoriesModel;
 use think\facade\Env;
 use think\Request;
 
-include Env::get('config_path').'TemplateConfig.php';
-
 class Index extends Controller
 {
     public function index(Request $request)

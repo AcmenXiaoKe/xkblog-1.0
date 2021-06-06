@@ -19,6 +19,7 @@ class OptionsGeneral extends Controller
     }
     public function edit(Request  $request){
         $data  = $request->post();
+        $web_options = include Env::get('config_path').'siteconfig.php';
         $code = <<<INFO
 <?php
 
@@ -26,7 +27,8 @@ return [
     'name'          =>      '{$data['name']}',
     'url'           =>      '{$data['url']}',
     'description'   =>      '{$data['description']}',
-    'keywords'      =>      '{$data['keywords']}'
+    'keywords'      =>      '{$data['keywords']}',
+    'template'      =>      '{$web_options['template']}'
 ];
 INFO;
         file_put_contents(Env::get('config_path').'siteconfig.php', $code);
