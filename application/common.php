@@ -45,7 +45,7 @@ function getCateGoriesTotal() {
 }
 // 获取评论总数
 function getCommentsTotal() {
-    return CommentsModel::name('contents')->where('state',true)->count();
+    return CommentsModel::name('comments')->where('state',true)->count();
 }
 // 获取文章浏览的总数
 function getBrowseTotal () {
