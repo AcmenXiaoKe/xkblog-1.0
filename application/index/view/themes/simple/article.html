@@ -23,7 +23,7 @@
 <div class="banner_wrap">
     <div class="banner wrap">
         <div class="banner_title">
-            <div class="banner_title_content" data-text='["{//$data[' title']}","{$web_options['name']}"]'></div>
+            <div class="banner_title_content" data-text='["{$data['title']}","{$web_options['name']}"]'></div>
         </div>
     </div>
 </div>
@@ -110,8 +110,8 @@
             </svg>评论一下~
         </div>
         <div class="comments_header">
-            <input type="text" id="author" placeholder="* 你的名字">
-            <input type="text" id="email" placeholder="* 邮箱 ">
+            <input type="text" value="{$cookie.name}" id="author" placeholder="* 你的名字">
+            <input type="text" value="{$cookie.email}" id="email" placeholder="* 邮箱 ">
             <input type="text" id="Personal_website" placeholder="https://你的主页">
         </div>
         <input type="hidden" value="{$data.aid}" id="aid">

@@ -73,15 +73,17 @@ class Check extends Controller
                     'randomArticle'    =>  $randomArticle,
                     'TemplateConfig'   =>  $TemplateConfig,
                     'categories'       =>  $categories,
-                    'categoriesData'  =>   $categoriesData,
-                    'pages'            =>   $pages
+                    'categoriesData'   =>   $categoriesData,
+                    'pages'            =>   $pages,
+                    'cookie'           => Cookie::get('user')
                 ]);
             }
             // 判断当前模块是否是 admin
             if($request->module() == 'admin') {
+//                return dump($_COOKIE['user']);
                 // 公共的变量
                 $this->assign([
-                    'name'  =>  getUserInfo()['name'],
+                    'name'  =>  Cookie::get('user')['username'],
                     'title' =>  $web_options['name']
                 ]);
                 // 判断 user 字段的 cookie 存在 通过

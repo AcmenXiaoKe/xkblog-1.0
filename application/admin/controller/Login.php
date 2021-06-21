@@ -31,7 +31,11 @@ class Login extends Controller
             return json(res(null,'账号或者密码错误！',400));
         }
         Cookie::clear('user');
-        Cookie::set('user',$data['username']);
+        Cookie::set('user',[
+            'username'=>$user['username'],
+            'name'=>$user['name'],
+            'email'=>$user['email']
+        ]);
         $edit = UserModel::name('user')->where('username',$data['username'])->update([
             'logged'    =>  date('Y-m-d H:i:s')
         ]);

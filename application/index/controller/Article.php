@@ -53,7 +53,22 @@ class Article extends Controller
     public function comments(Request $request){
         $data = $request->post();
         $insert =  CommentsModel::name('comments')->insert($data);
-//        return dump($insert);
+        if($data['pid'] !== "0") {
+            $article = ContentsModel::name('contents')->where('aid',$data['aid'])->where('state',true)->where('type','post')->find();
+            $replier =  CommentsModel::name('comments')->where('cid',$data['pid'])->find();
+            $EmailInfo = include Env::get('config_path').'Email.php';
+            $html = '<div style="margin: 200px auto;width: 500px;height: 100%;background: #F7F8FA;padding: 20px;box-sizing: border-box;">
+        <div style="font-weight: 600;font-size: 1.2em;">'.$EmailInfo['Name'].'</div>
+        <div style="height: 100%;background: #FFF;margin-top: 15px;border-top: 3px solid #00a4ff; padding: 15px;">
+            <div><span style="font-size: 14px;color: #666;">'.$data['author'].'</span><span
+                    style="font-size: 14px;margin-left: 15px;color: #666;">'.$data['email'].'</span></div>
+            <div style="margin: 15px 0;line-height: 25px;">'.$data['content'].'</div>
+        </div>
+        <a href="'.$request->scheme().'://'.$request->host().'/article/'.$data['aid'].'"
+            style="text-decoration: none;display: block;height: 35px;background: #00a4ff; text-align: center; line-height: 35px;color: #fff;border-radius: 3px;margin-top: 15px;">查看原文</a>
+    </div>';
+           return json(send_mail($replier['email'],$data['author'],$data['author'].'回复了你在《'.$article['title'].'》'.'下的留言',$html));
+        }
         return res(null,'评论成功！',200);
     }
     public function praise(Request $request){

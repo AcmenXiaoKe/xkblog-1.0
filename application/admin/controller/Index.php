@@ -18,7 +18,7 @@ class Index extends Controller
         $notice_url = "http://gw.xkbk.top/notice";
         $notice = json_decode($this->curl_get($notice_url),true);
         // 获取最新文章
-        $article  =   ContentsModel::name('contents')->limit(10)->order("aid desc")->select();
+        $article  =   ContentsModel::name('contents')->where('state',true)->where('type','post')->limit(10)->order("aid desc")->select();
         //获取最新评论
         $comments =    ContentsModel::name('comments')->limit(10)->order("cid desc")->select();
         // 待审评论

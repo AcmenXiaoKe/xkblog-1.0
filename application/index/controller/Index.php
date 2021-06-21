@@ -15,7 +15,7 @@ class Index extends Controller
         $templatePath = include Env::get('config_path').'siteconfig.php';
         // 最新文章
         // 获取最新文章
-        $PaginateModel = ContentsModel::name('contents')->where('type','post')->paginate(10);
+        $PaginateModel = ContentsModel::name('contents')->where('state',true)->where('type','post')->paginate(10);
         $totalPage = ceil($PaginateModel->total() / 10);
         $data = $request->get();
         $size = array_key_exists('size',$data) ?  $data['size'] : 10;

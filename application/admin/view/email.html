@@ -1,0 +1,58 @@
+{extend name='common'}
+{block name="link"}
+{/block}
+
+{block name="header"}
+{include file='common/header'}
+{/block}
+
+{block name="main"}
+        <div class="layui-body">
+            <!-- 内容主体区域 -->
+            <div class="layui-body_box">
+                <div class="layui-body_wrap">
+                    <div class="layui-body_wrap_title">邮箱设置</div>
+                    <div class="layui-row">
+                        <div class="layui-col-xs12  layui-col-md8 layui-col-md-offset2">
+                            <form action="/admin/email/edit" method="post" class="site_set_From">
+                                <div class="Form_item">
+                                    <div class="From_item_title">SMTP服务器</div>
+                                    <input type="text"  required class="From_item_input From_item_input_name" name="Host" value="{$data.Host ?: ''}">
+                                </div>
+                                <div class="Form_item">
+                                    <div class="From_item_title">SMTP服务器的端口号</div>
+                                    <input type="text"  required class="From_item_input From_item_input_name" name="Port" value="{$data.Port ?: ''}">
+                                </div>
+                                <div class="Form_item">
+                                    <div class="From_item_title">安全协议</div>
+                                    <input type="text"  required class="From_item_input From_item_input_name" name="SMTPSecure" value="{$data.SMTPSecure ?: ''}">
+                                </div>
+                                <div class="Form_item">
+                                    <div class="From_item_title">SMTP服务器用户名</div>
+                                    <input type="text"  required class="From_item_input From_item_input_name" name="Username" value="{$data.Username ?: ''}">
+                                </div>
+                                <div class="Form_item">
+                                    <div class="From_item_title">SMTP服务器密码</div>
+                                    <input type="text"  required class="From_item_input From_item_input_name" name="Password" value="{$data.Password ?: ''}">
+                                    <div class="From_item_prompt">注意：不是邮箱的密码，是授权码</div>
+                                </div>
+                                <div class="Form_item">
+                                    <div class="From_item_title">发送者名称</div>
+                                    <input type="text"  required class="From_item_input From_item_input_name" name="Name" value="{$data.Name ?: ''}">
+                                </div>
+                                <input type="submit" class="From_submit" value="保存设置">
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+{/block}
+{block name="aside"}
+{include file='common/aside'}
+{/block}
+
+
+{block name="footer_script"}
+{/block}
